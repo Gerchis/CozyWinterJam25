@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct2bgx08womri"]
+
+[ext_resource type="Script" path="res://Entities/camera_raycast.gd" id="1_jruuq"]
+
+[node name="CameraRaycast" type="Camera3D"]
+projection = 1
+script = ExtResource("1_jruuq")

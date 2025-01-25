@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpsgmayqpwkm1"]
+
+[ext_resource type="PackedScene" uid="uid://ct2bgx08womri" path="res://Entities/CameraRaycast.tscn" id="1_t0w2p"]
+[ext_resource type="Script" path="res://Entities/InteractableArea.gd" id="1_w1jah"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxfr0"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lbjsl"]
+material = SubResource("StandardMaterial3D_vxfr0")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ocyf"]
+
+[node name="TestMap" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.634232, -0.0269732, -0.772672, 0.0207777, 0.999625, -0.0178409, 0.772864, -0.00473909, 0.634554, -0.946914, 0.00636446, -0.00590402)
+mesh = SubResource("BoxMesh_lbjsl")
+
+[node name="InteractableArea" type="Area3D" parent="MeshInstance3D2"]
+script = ExtResource("1_w1jah")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/InteractableArea"]
+shape = SubResource("BoxShape3D_0ocyf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.923145, -0.196356, 0.330527, 0.00758849, 0.868873, 0.494976, -0.384378, -0.454427, 0.803586, -0.00767206, 1.26146, 0.00402355)
+
+[node name="CameraRaycast" parent="." instance=ExtResource("1_t0w2p")]
+transform = Transform3D(0.948722, -0.0914617, 0.302592, 0, 0.957229, 0.289333, -0.316113, -0.274496, 0.908144, 0.468502, 0.778465, 2.64509)
+size = 7.122
