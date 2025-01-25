@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyotinhd4q3xr"]
+
+[ext_resource type="Script" path="res://Entities/tadpole.gd" id="1_jgl8p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_54w6b"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2untj"]
+
+[node name="Tadpole" type="Area3D"]
+script = ExtResource("1_jgl8p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_54w6b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_2untj")
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true

@@ -4,4 +4,5 @@
 
 [node name="CameraRaycast" type="Camera3D"]
 projection = 1
+current = true
 script = ExtResource("1_jruuq")
