@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://buc5ui3gkrlel"]
+
+[ext_resource type="Script" path="res://Entities/frog.gd" id="1_hd7ed"]
+[ext_resource type="PackedScene" uid="uid://bfmp5mv3f0cni" path="res://Assets/Models/Animacion_Ranas_001.glb" id="2_atnq6"]
+[ext_resource type="PackedScene" uid="uid://te5wmp7fovjy" path="res://Assets/Models/Animacion_Ranas_002.glb" id="3_bdt8h"]
+[ext_resource type="PackedScene" uid="uid://b25nnjmyfjk53" path="res://Assets/Models/Animacion_Ranas_004.glb" id="4_snux3"]
+[ext_resource type="PackedScene" uid="uid://dlpaxlu44518g" path="res://Assets/Models/Animacion_Ranas_005.glb" id="5_dji18"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h3n0g"]
+size = Vector3(1.84741, 1.50391, 1.56152)
+
+[node name="Frog" type="Area3D"]
+script = ExtResource("1_hd7ed")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0045166, 0.745479, 0.127441)
+shape = SubResource("BoxShape3D_h3n0g")
+
+[node name="BasicFrog" parent="." instance=ExtResource("2_atnq6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0532559, 0.0232947, -0.0100727)
+visible = false
+
+[node name="Skeleton3D" parent="BasicFrog/Armature" index="0"]
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-0.119605, -0.00749921, -0.0787189, 0.989667)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(-0.119605, 0.00749921, 0.0787189, 0.989667)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.998682, 0.000681741, -4.58418e-05, 0.0513244)
+bones/4/scale = Vector3(1, 1, 1.00003)
+bones/5/rotation = Quaternion(0.999311, 0.0223997, -0.000593017, -0.0295851)
+bones/6/rotation = Quaternion(0.998682, -0.000681741, 4.58418e-05, 0.0513244)
+bones/6/scale = Vector3(1, 1, 1.00003)
+bones/7/rotation = Quaternion(0.999311, -0.0223997, 0.000593017, -0.0295851)
+
+[node name="PacmanFrog" parent="." instance=ExtResource("3_bdt8h")]
+visible = false
+
+[node name="Skeleton3D" parent="PacmanFrog/Armature" index="0"]
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-0.119605, -0.00749921, -0.0787189, 0.989667)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(-0.119605, 0.00749921, 0.0787189, 0.989667)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.998682, 0.000681741, -4.58418e-05, 0.0513244)
+bones/4/scale = Vector3(1, 1, 1.00003)
+bones/5/rotation = Quaternion(0.999311, 0.0223997, -0.000593017, -0.0295851)
+bones/6/rotation = Quaternion(0.998682, -0.000681741, 4.58418e-05, 0.0513244)
+bones/6/scale = Vector3(1, 1, 1.00003)
+bones/7/rotation = Quaternion(0.999311, -0.0223997, 0.000593017, -0.0295851)
+
+[node name="RoundFrog" parent="." instance=ExtResource("4_snux3")]
+
+[node name="Skeleton3D" parent="RoundFrog/Armature" index="0"]
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-0.119605, -0.00749921, -0.0787189, 0.989667)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(-0.119605, 0.00749921, 0.0787189, 0.989667)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.998682, 0.000681741, -4.58418e-05, 0.0513244)
+bones/4/scale = Vector3(1, 1, 1.00003)
+bones/5/rotation = Quaternion(0.999311, 0.0223997, -0.000593017, -0.0295851)
+bones/6/rotation = Quaternion(0.998682, -0.000681741, 4.58418e-05, 0.0513244)
+bones/6/scale = Vector3(1, 1, 1.00003)
+bones/7/rotation = Quaternion(0.999311, -0.0223997, 0.000593017, -0.0295851)
+
+[node name="HornedFrog" parent="." instance=ExtResource("5_dji18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0191827, -2.38419e-07, 0.00150967)
+visible = false
+
+[node name="Skeleton3D" parent="HornedFrog/Armature" index="0"]
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-0.119605, -0.00749921, -0.0787189, 0.989667)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(-0.119605, 0.00749921, 0.0787189, 0.989667)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.998682, 0.000681741, -4.58418e-05, 0.0513244)
+bones/4/scale = Vector3(1, 1, 1.00003)
+bones/5/rotation = Quaternion(0.999311, 0.0223997, -0.000593017, -0.0295851)
+bones/6/rotation = Quaternion(0.998682, -0.000681741, 4.58418e-05, 0.0513244)
+bones/6/scale = Vector3(1, 1, 1.00003)
+bones/7/rotation = Quaternion(0.999311, -0.0223997, 0.000593017, -0.0295851)
+
+[editable path="BasicFrog"]
+[editable path="PacmanFrog"]
+[editable path="RoundFrog"]
+[editable path="HornedFrog"]

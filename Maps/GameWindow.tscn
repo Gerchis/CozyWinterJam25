@@ -1,18 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2jxlro07o5ab"]
+[gd_scene load_steps=14 format=3 uid="uid://b2jxlro07o5ab"]
 
-[ext_resource type="PackedScene" uid="uid://bpsgmayqpwkm1" path="res://Maps/test_map.tscn" id="1_172mr"]
 [ext_resource type="Script" path="res://Managers/ui_manager.gd" id="2_gngh1"]
 [ext_resource type="AudioStream" uid="uid://b0kckxyjihal" path="res://Assets/Soundtrack/Sunflower Fields LOOP.wav" id="2_rsyuu"]
+[ext_resource type="PackedScene" uid="uid://bg6808ba8iskc" path="res://Maps/Garden.tscn" id="3_f830q"]
+[ext_resource type="Texture2D" uid="uid://cucb84v4l0ge0" path="res://Assets/Textures/Btn_Volumen.png" id="4_dv76l"]
+[ext_resource type="Texture2D" uid="uid://dhqfhjcqc2h73" path="res://Assets/Textures/Ui_001.png" id="4_vtv8b"]
 
-[node name="Control" type="Control"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fvss"]
+atlas = ExtResource("4_dv76l")
+region = Rect2(433, 12, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b0nk"]
+atlas = ExtResource("4_dv76l")
+region = Rect2(398, 11, 25, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ummeg"]
+atlas = ExtResource("4_dv76l")
+region = Rect2(355, 8, 27, 42)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yx1bb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ryeqy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0sf0i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpa43"]
+atlas = ExtResource("4_dv76l")
+region = Rect2(19, 6, 157, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8eyg"]
+atlas = ExtResource("4_dv76l")
+region = Rect2(188, 6, 157, 44)
+
+[node name="UiManager" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("2_gngh1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="GameLayout" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,35 +51,104 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer"]
-texture_filter = 1
+[node name="GameWindow" type="Control" parent="GameLayout"]
 layout_mode = 2
 size_flags_vertical = 3
-stretch = true
-stretch_shrink = 3
+mouse_filter = 1
 
-[node name="SubViewport" type="SubViewport" parent="VBoxContainer/SubViewportContainer"]
-handle_input_locally = false
-scaling_3d_scale = 2.0
-size = Vector2i(640, 326)
-render_target_update_mode = 4
-
-[node name="TestMap" parent="VBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_172mr")]
-
-[node name="UiManager" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-script = ExtResource("2_gngh1")
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/UiManager"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GameLayout/GameWindow"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 0
+stretch = true
+stretch_shrink = 4
+
+[node name="SubViewport" type="SubViewport" parent="GameLayout/GameWindow/SubViewportContainer"]
+handle_input_locally = false
+scaling_3d_scale = 2.0
+size = Vector2i(480, 220)
+render_target_update_mode = 4
+
+[node name="Garden" parent="GameLayout/GameWindow/SubViewportContainer/SubViewport" instance=ExtResource("3_f830q")]
+
+[node name="MarginContainer" type="MarginContainer" parent="GameLayout/GameWindow"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="TextureButton" type="TextureButton" parent="GameLayout/GameWindow/MarginContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7fvss")
+texture_pressed = SubResource("AtlasTexture_3b0nk")
+
+[node name="VolumeSlider" type="HSlider" parent="GameLayout/GameWindow"]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_left = 1708.0
+offset_top = 16.0
+offset_right = 1869.0
+offset_bottom = 58.0
+size_flags_vertical = 1
+theme_override_icons/grabber = SubResource("AtlasTexture_ummeg")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_ummeg")
+theme_override_icons/grabber_disabled = SubResource("AtlasTexture_ummeg")
+theme_override_icons/tick = SubResource("AtlasTexture_ummeg")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_yx1bb")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_ryeqy")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_0sf0i")
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="VolumeBar" type="TextureProgressBar" parent="GameLayout/GameWindow/VolumeSlider"]
+unique_name_in_owner = true
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+nine_patch_stretch = true
+texture_under = SubResource("AtlasTexture_fpa43")
+texture_progress = SubResource("AtlasTexture_f8eyg")
+
+[node name="Footer" type="Control" parent="GameLayout"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameLayout/Footer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vtv8b")
+expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_rsyuu")
-volume_db = -20.0
+volume_db = -10.0
 autoplay = true
+
+[connection signal="pressed" from="GameLayout/GameWindow/MarginContainer/TextureButton" to="." method="on_config_clicked"]
+[connection signal="value_changed" from="GameLayout/GameWindow/VolumeSlider" to="." method="volume_changed"]
