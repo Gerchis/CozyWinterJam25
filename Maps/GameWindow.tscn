@@ -1,22 +1,26 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2jxlro07o5ab"]
+[gd_scene load_steps=21 format=3 uid="uid://b2jxlro07o5ab"]
 
 [ext_resource type="Script" path="res://Managers/ui_manager.gd" id="2_gngh1"]
 [ext_resource type="AudioStream" uid="uid://b0kckxyjihal" path="res://Assets/Soundtrack/Sunflower Fields LOOP.wav" id="2_rsyuu"]
 [ext_resource type="PackedScene" uid="uid://bg6808ba8iskc" path="res://Maps/Garden.tscn" id="3_f830q"]
-[ext_resource type="Texture2D" uid="uid://cucb84v4l0ge0" path="res://Assets/Textures/Btn_Volumen.png" id="4_dv76l"]
-[ext_resource type="Texture2D" uid="uid://dhqfhjcqc2h73" path="res://Assets/Textures/Ui_001.png" id="4_vtv8b"]
+[ext_resource type="PackedScene" uid="uid://q5aa8y6nsbgb" path="res://Maps/River.tscn" id="3_v25ho"]
+[ext_resource type="PackedScene" uid="uid://bmhovcxnde21r" path="res://Maps/Bottle.tscn" id="4_vk7t5"]
+[ext_resource type="Texture2D" uid="uid://ow7uqkv7de3" path="res://Assets/Textures/Ui_002.png" id="5_4qt1e"]
+[ext_resource type="PackedScene" uid="uid://cs5qc6lykxprs" path="res://Maps/Dirt.tscn" id="5_kk8na"]
+[ext_resource type="Texture2D" uid="uid://b20olqn5tm8en" path="res://Assets/Textures/Btn_Volumen_001.png" id="5_lqiwq"]
+[ext_resource type="Texture2D" uid="uid://bd3nff5epiodl" path="res://Assets/Textures/UiBtn_Atras_001.png" id="6_d3utv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fvss"]
-atlas = ExtResource("4_dv76l")
+atlas = ExtResource("5_lqiwq")
 region = Rect2(433, 12, 25, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3b0nk"]
-atlas = ExtResource("4_dv76l")
-region = Rect2(398, 11, 25, 35)
+atlas = ExtResource("5_lqiwq")
+region = Rect2(399, 12, 25, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ummeg"]
-atlas = ExtResource("4_dv76l")
-region = Rect2(355, 8, 27, 42)
+atlas = ExtResource("5_lqiwq")
+region = Rect2(363, 8, 25, 41)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yx1bb"]
 
@@ -25,12 +29,24 @@ region = Rect2(355, 8, 27, 42)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0sf0i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpa43"]
-atlas = ExtResource("4_dv76l")
+atlas = ExtResource("5_lqiwq")
 region = Rect2(19, 6, 157, 44)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8eyg"]
-atlas = ExtResource("4_dv76l")
+atlas = ExtResource("5_lqiwq")
 region = Rect2(188, 6, 157, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elies"]
+atlas = ExtResource("6_d3utv")
+region = Rect2(19, 8, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6m05"]
+atlas = ExtResource("6_d3utv")
+region = Rect2(53, 8, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ltov"]
+atlas = ExtResource("6_d3utv")
+region = Rect2(53, 8, 25, 34)
 
 [node name="UiManager" type="Control"]
 layout_mode = 3
@@ -56,7 +72,8 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GameLayout/GameWindow"]
+[node name="Garden" type="SubViewportContainer" parent="GameLayout/GameWindow"]
+unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -69,13 +86,79 @@ mouse_filter = 0
 stretch = true
 stretch_shrink = 4
 
-[node name="SubViewport" type="SubViewport" parent="GameLayout/GameWindow/SubViewportContainer"]
+[node name="GardenViewport" type="SubViewport" parent="GameLayout/GameWindow/Garden"]
+own_world_3d = true
 handle_input_locally = false
 scaling_3d_scale = 2.0
 size = Vector2i(480, 220)
 render_target_update_mode = 4
 
-[node name="Garden" parent="GameLayout/GameWindow/SubViewportContainer/SubViewport" instance=ExtResource("3_f830q")]
+[node name="Garden" parent="GameLayout/GameWindow/Garden/GardenViewport" instance=ExtResource("3_f830q")]
+
+[node name="River" type="SubViewportContainer" parent="GameLayout/GameWindow"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 0
+stretch = true
+stretch_shrink = 4
+
+[node name="RiverViewport" type="SubViewport" parent="GameLayout/GameWindow/River"]
+own_world_3d = true
+handle_input_locally = false
+scaling_3d_scale = 2.0
+size = Vector2i(480, 220)
+render_target_update_mode = 0
+
+[node name="River" parent="GameLayout/GameWindow/River/RiverViewport" instance=ExtResource("3_v25ho")]
+
+[node name="Bottle" type="SubViewportContainer" parent="GameLayout/GameWindow"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+
+[node name="RiverViewport" type="SubViewport" parent="GameLayout/GameWindow/Bottle"]
+own_world_3d = true
+handle_input_locally = false
+scaling_3d_scale = 2.0
+size = Vector2i(480, 220)
+render_target_update_mode = 0
+
+[node name="Bottle" parent="GameLayout/GameWindow/Bottle/RiverViewport" instance=ExtResource("4_vk7t5")]
+
+[node name="Dirt" type="SubViewportContainer" parent="GameLayout/GameWindow"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+
+[node name="RiverViewport" type="SubViewport" parent="GameLayout/GameWindow/Dirt"]
+own_world_3d = true
+handle_input_locally = false
+scaling_3d_scale = 2.0
+size = Vector2i(480, 220)
+render_target_update_mode = 0
+
+[node name="Dirt" parent="GameLayout/GameWindow/Dirt/RiverViewport" instance=ExtResource("5_kk8na")]
 
 [node name="MarginContainer" type="MarginContainer" parent="GameLayout/GameWindow"]
 layout_mode = 1
@@ -110,9 +193,10 @@ theme_override_icons/tick = SubResource("AtlasTexture_ummeg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_yx1bb")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_ryeqy")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_0sf0i")
-max_value = 1.0
+min_value = -1.0
+max_value = 0.0
 step = 0.01
-value = 0.5
+value = -0.5
 
 [node name="VolumeBar" type="TextureProgressBar" parent="GameLayout/GameWindow/VolumeSlider"]
 unique_name_in_owner = true
@@ -127,6 +211,7 @@ mouse_filter = 2
 max_value = 1.0
 step = 0.01
 value = 0.5
+fill_mode = 1
 nine_patch_stretch = true
 texture_under = SubResource("AtlasTexture_fpa43")
 texture_progress = SubResource("AtlasTexture_f8eyg")
@@ -142,8 +227,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_vtv8b")
+texture = ExtResource("5_4qt1e")
 expand_mode = 1
+
+[node name="BackButton" type="TextureButton" parent="GameLayout/Footer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1401.0
+offset_top = -72.0
+offset_right = 1505.0
+offset_bottom = 68.0
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_elies")
+texture_pressed = SubResource("AtlasTexture_k6m05")
+texture_disabled = SubResource("AtlasTexture_8ltov")
+stretch_mode = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_rsyuu")
@@ -152,3 +253,4 @@ autoplay = true
 
 [connection signal="pressed" from="GameLayout/GameWindow/MarginContainer/TextureButton" to="." method="on_config_clicked"]
 [connection signal="value_changed" from="GameLayout/GameWindow/VolumeSlider" to="." method="volume_changed"]
+[connection signal="pressed" from="GameLayout/Footer/BackButton" to="." method="change_to_garden"]

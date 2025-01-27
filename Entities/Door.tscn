@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://cjsb766rv0x3k"]
 
-[ext_resource type="Script" path="res://door.gd" id="1_cecb1"]
+[ext_resource type="Script" path="res://Entities/door.gd" id="1_cecb1"]
 [ext_resource type="ArrayMesh" uid="uid://dtykyb4fcg0r1" path="res://Assets/Meshes/door.res" id="2_4eymb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7275o"]

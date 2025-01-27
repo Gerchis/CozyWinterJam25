@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://cs5qc6lykxprs"]
+
+[ext_resource type="Script" path="res://Maps/dirt.gd" id="1_o4xd6"]
+[ext_resource type="ArrayMesh" uid="uid://x8ojb6inojmo" path="res://Assets/Meshes/Nieve1.res" id="1_tacds"]
+[ext_resource type="Script" path="res://Maps/dig.gd" id="2_1cwr3"]
+[ext_resource type="ArrayMesh" uid="uid://dcw5bru284b5y" path="res://Assets/Meshes/Nieve2.res" id="2_finml"]
+[ext_resource type="ArrayMesh" uid="uid://bxv6vq4bqclgj" path="res://Assets/Meshes/Nieve3.res" id="3_5wp6s"]
+[ext_resource type="ArrayMesh" uid="uid://eudifm0na5bv" path="res://Assets/Meshes/SueloGusanos.res" id="4_1br11"]
+[ext_resource type="ArrayMesh" uid="uid://wqa384tg5dry" path="res://Assets/Meshes/BaseGusanos.res" id="5_4kuqg"]
+[ext_resource type="PackedScene" uid="uid://ct2bgx08womri" path="res://Entities/CameraRaycast.tscn" id="6_bxllv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_043oy"]
+size = Vector3(2.56836, 1, 2.0166)
+
+[sub_resource type="Environment" id="Environment_8ufm2"]
+background_mode = 1
+background_color = Color(0.614191, 0.73707, 0.813899, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.614191, 0.73707, 0.813899, 1)
+
+[node name="Dirt" type="Node3D"]
+script = ExtResource("1_o4xd6")
+
+[node name="Dig" type="Area3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_1cwr3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.769867, 2.47613, -1.08131)
+shape = SubResource("BoxShape3D_043oy")
+
+[node name="Layer3" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.912392, 0, 0.409318, 0, 1, 0, -0.409318, 0, 0.912392, -0.657233, -0.154185, -1.12646)
+mesh = ExtResource("1_tacds")
+
+[node name="Layer2" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.979547, 0, -0.201215, 0, 1, 0, 0.201215, 0, 0.979547, -0.657233, 0.125435, -1.12646)
+mesh = ExtResource("2_finml")
+
+[node name="Layer1" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.657233, 0.426084, -1.02841)
+mesh = ExtResource("3_5wp6s")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.552037, 0.0869305, -1.19844)
+mesh = ExtResource("4_1br11")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.104156, -0.112128, -0.128759, 0.170305, 0.0789609, 0.0690023, 0.0121491, -0.145577, 0.136601, -2.40335, 0.859484, 1.60398)
+mesh = ExtResource("5_4kuqg")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8ufm2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.768118, 0.413962, -0.488499, -0.0148782, 0.774244, 0.632713, 0.640136, -0.47873, 0.600869, -19.9402, 16.5808, -1.90735e-06)
+
+[node name="CameraRaycast" parent="." instance=ExtResource("6_bxllv")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.689578, 4.76018, -1.13144)
+size = 3.0

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmhovcxnde21r"]
+
+[ext_resource type="Script" path="res://Maps/bottle.gd" id="1_0n577"]
+[ext_resource type="PackedScene" uid="uid://522v2yrqhrof" path="res://Assets/Models/Modelado_Botella_001.glb" id="1_6ri04"]
+[ext_resource type="PackedScene" uid="uid://ct2bgx08womri" path="res://Entities/CameraRaycast.tscn" id="2_e1jar"]
+
+[sub_resource type="Environment" id="Environment_014k0"]
+background_mode = 1
+background_color = Color(0.614191, 0.73707, 0.813899, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.614191, 0.73707, 0.813899, 1)
+
+[node name="Bottle" type="Node3D"]
+script = ExtResource("1_0n577")
+
+[node name="Modelado_Botella_001" parent="." instance=ExtResource("1_6ri04")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_014k0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.768118, 0.413962, -0.488499, -0.0148782, 0.774244, 0.632713, 0.640136, -0.47873, 0.600869, -19.9402, 16.5808, -1.90735e-06)
+
+[node name="CameraRaycast" parent="." instance=ExtResource("2_e1jar")]
+transform = Transform3D(0.882841, -0.108925, -0.456866, 0, 0.972735, -0.231918, 0.469672, 0.204746, 0.858771, -2.02507, -0.954515, 3.97828)
+size = 0.7
+
+[node name="FliesContainer" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

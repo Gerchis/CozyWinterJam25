@@ -15,3 +15,7 @@ func _off_hover() -> void:
 	var new_material := outline.mesh.surface_get_material(0).duplicate()
 	new_material.albedo_color = unselected_color
 	outline.mesh.surface_set_material(0, new_material)
+
+func _interaction () -> void:
+	_off_hover()
+	GlobalSignals.go_to_bottle.emit()
